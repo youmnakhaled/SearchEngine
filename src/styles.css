@@ -1,0 +1,179 @@
+@font-face {
+  font-family: Circular;
+  src: url("https://sp-bootstrap.global.ssl.fastly.net/8.12.4/fonts/circular-black.woff2") format("woff2"), url("https://sp-bootstrap.global.ssl.fastly.net/8.12.4/fonts/circular-black.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+
+ .notify-time{
+	color: #c5c5e6;
+	font-size: 10px;
+}
+
+.header{
+  height: 60vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #e74c3c !important;
+  }
+  .lowerContaniner{
+    text-align: center;
+    height: fit-content;
+    min-height: 40vh;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background: lightgray !important;
+  }
+  .box{
+    padding: 20px;
+    width: 70% ;
+    text-align: left;
+    background-color:whitesmoke;
+    display: inline-block;
+  }
+
+#pageTitle{
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  position: absolute;
+  box-sizing: border-box;
+  color: snow;
+  /* left: 80px; */
+  font-family: Circular, Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.96px;
+  line-height: 57.6px;
+  margin-bottom: 20px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+/********************  ScrollBar *******************/
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+input {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    width: 300px;
+  } 
+ .no-suggestions {
+    color: #999;
+    padding: 0.5rem;
+  } 
+  
+   .searchbar:hover .suggestions {
+    background-color:  #999;
+    border-top-width: 0;
+    list-style: none;
+    margin-top: 17px;
+    max-height: 27vh;
+     overflow-y: auto ; 
+    padding-left: 0;
+    position: relative;
+    display: block;
+  }
+  .searchbar .suggestions{
+    display: none;
+  }
+  .searchbar:hover .suggestions li {
+    padding: 0.5rem;
+  }
+  
+  .searchbar:hover .suggestion-active {
+    background-color: gainsboro;
+    color: black;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+  .searchbar:hover .suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+  } */
+
+  body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: whitesmoke !important;
+    font-family: sans-serif;
+
+    }
+
+ 
+    
+    .searchbar{
+      position: relative;
+      top: 20vh;
+    margin-bottom: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+    .searchbar:hover >.search_icon > .mic{
+      background: white;
+      color: grey;
+      }
+      .mic{
+        color: grey;
+      }
+
+    .search_icon{
+    height: 40px;
+    width: 50px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+    
+    
