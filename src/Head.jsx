@@ -28,43 +28,21 @@ class Head extends Component{
       appropriateSuggestions:{},
       chosenIndex:-1,
       userInput:"",
-      // voice:""
     };
 }
 
-onChange = e => {
-    const input = e.currentTarget.value;
-    const newSuggestions = this.state.suggestions.filter(
-        suggestion =>
-          suggestion.toLowerCase().indexOf(input.toLowerCase()) > -1
-      );
- 
-    this.setState({
-        showDropdown: true,
-        userInput:input,
-        appropriateSuggestions:newSuggestions,
-      });
-
- }
-  handleChange = (event, value) => {
-    // console.log(value)
-  this.setState({
-    currentPage:value,
-  });
-};
-
 componentDidMount()
 {
-  axios.get("http://my-json-server.typicode.com/youmnakhaled/Fakedata/history" )
+  axios.get("https://searchengine123.herokuapp.com/history" )
   .then((res) =>  {
-
+    // console.log(res)
     var dict = []  
     res.data.map( item =>
       dict.push(item.word))
     this.setState({
       suggestions:dict,
     })
-    console.log(this.state.suggestions)
+    // console.log(this.state.suggestions)
   }  
   )
   .catch((err) =>  {
@@ -74,17 +52,30 @@ componentDidMount()
 }
 
  fetchData(key){
-  axios.get("http://my-json-server.typicode.com/youmnakhaled/Fakedata/urls" )
+  axios.get("https://searchengine123.herokuapp.com/findWord/"+key )
   .then((res) =>  {
-    this.setState({
-      urls:res.data,
-      userInput:"",
-    })
+    console.log("https://searchengine123.herokuapp.com/findWord/"+key)
+    // console.log(res)
+    if(res.data!=="")
+    {
+      this.setState({
+        urls:res.data.urls,
+        userInput:"",
+      })
+    }
+    else{
+      this.setState({
+        urls:[],
+        data:[],
+        userInput:"",
+      })
+    }
     this.getMetaData(this.state.urls);
+
   }  
   )
   .finally(
-    console.log(this.state.urls),
+    // console.log(this.state.urls),
     this.setState({
       isLoading:false})
   )
@@ -101,10 +92,40 @@ componentDidMount()
   var event = new Event('onChange');
    var element =document.getElementById("inputMain");
    element.dispatchEvent(event);
+  const newSuggestions = this.state.suggestions.filter(
+    suggestion =>
+      suggestion.toLowerCase().indexOf(childData.toLowerCase()) > -1
+  );
+
+  this.setState({
+      showDropdown: true,
+      appropriateSuggestions:newSuggestions,
+    });
+
    }
-  
-  // this.onChange(e.currentTarget)
 }
+
+onChange = e => {
+  const input = e.currentTarget.value;
+  const newSuggestions = this.state.suggestions.filter(
+      suggestion =>
+        suggestion.toLowerCase().indexOf(input.toLowerCase()) > -1
+    );
+
+  this.setState({
+      showDropdown: true,
+      userInput:input,
+      appropriateSuggestions:newSuggestions,
+    });
+
+}
+handleChange = (event, value) => {
+      // console.log(value)
+    this.setState({
+      currentPage:value,
+    });
+};
+
 
  onKeyDown = e => {
     var current=this.state.chosenIndex;
@@ -114,7 +135,7 @@ componentDidMount()
             chosenIndex:-1,
             showDropdown: false,
           });
-          this.fetchData(this.state.appropriateSuggestions[current]);
+          this.fetchData(this.state.userInput);
 
       }
       else if (e.keyCode === 38) {
@@ -122,14 +143,21 @@ componentDidMount()
           return;
         }
   
-        this.setState({ chosenIndex: current - 1 });
+        this.setState({ 
+          chosenIndex: current - 1,
+          userInput: this.state.appropriateSuggestions[this.state.chosenIndex - 1]
+
+        });
       }
-      // User pressed the down arrow
+      // down arrow
       else if (e.keyCode === 40) {
-        if (current - 1 >= this.state.appropriateSuggestions.length) {
+        if (current  === this.state.appropriateSuggestions.length - 1 ) {
           return;
         }
-        this.setState({ chosenIndex: current + 1 });
+        this.setState({
+           chosenIndex: current + 1,
+           userInput: this.state.appropriateSuggestions[this.state.chosenIndex+ 1]
+          });
       }
 
  }
