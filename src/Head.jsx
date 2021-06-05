@@ -251,18 +251,24 @@ render(){
    <div>
         {(this.state.isLoading ===false)?
           (<div className="box">
-            { 
-           this.state.data.slice((this.state.currentPage - 1) * 10,
-           ((this.state.currentPage * 10) < this.state.totalResults ) ?
-            this.state.currentPage * 10 :  this.state.totalResults  ).map(i => (
-            <div className="clearfix search-result">
-          <h4><a href={i.url}>{i.title}</a></h4>
-          <small className="text-success">{i.url}</small>
-          <p>{i.description}</p>
-          <br/>
-          </div>        
-            ))}
-            <div className = "d-flex justify-content-center">
+              {
+              (this.state.data.length !==0 )? 
+
+               this.state.data.slice((this.state.currentPage - 1) * 10,
+                ( (this.state.currentPage * 10) < this.state.totalResults ) ?
+                this.state.currentPage * 10 :  this.state.totalResults  ).map(i => (
+                  <div className="clearfix search-result">
+                      <h4><a href={i.url}>{i.title}</a></h4>
+                      <small className="text-success">{i.url}</small>
+                      <p>{i.description}</p>
+                      <br/>
+                  </div>        
+                ))
+                
+                :
+                <h2 > Oops !! Not Found </h2>         
+              }
+              <div className = "d-flex justify-content-center">
                 <Pagination count={Math.ceil(this.state.totalResults/10)}
                  defaultPage={1} page={this.state.currentPage} color="secondary"
                  onChange={this.handleChange}
@@ -285,45 +291,3 @@ render(){
 
 
 export default Head;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  expand(){
-//   var css = (this.state.expanded === "inputContainer") ? "inputContainerCollapsed" : "inputContainer";
-//   this.setState({
-//     expanded:css
-//   });
-// }

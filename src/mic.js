@@ -26,10 +26,7 @@ const stopping=() =>{
     <div>
       <span className="fa fa-microphone text-danger" onClick={starting} aria-hidden="false" aria-label="start speech"></span>
       <span className="fa fa-microphone" onClick={stopping} aria-hidden="false" aria-label="stop"></span> 
-    
-       {/* <button onClick={starting}>Start</button> */}
-      {/* <button onClick={stopping}>Stop</button> */}
-      {/* <button onClick={resetTranscript}>Reset</button> */}  
+  
     </div>
   )
 }
